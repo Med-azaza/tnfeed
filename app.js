@@ -23,11 +23,11 @@ submit.addEventListener('click',(e)=>{
         email:email,
         password:pass
     }
-    fetch(`http://localhost:6969/user/${email}`)
+    fetch(`https://tnfeed.herokuapp.com/user/${email}`)
     .then(res=>res.json())
     .then((data)=>{
         if(data==null){
-        fetch('http://localhost:6969/register',{
+        fetch('https://tnfeed.herokuapp.com/register',{
             method:'POST',
             body:JSON.stringify(userdata),
             headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -69,11 +69,11 @@ const authin=()=>{
         email:email,
         password:pass
     }
-    fetch(`http://localhost:6969/user/${email}`)
+    fetch(`https://tnfeed.herokuapp.com/user/${email}`)
     .then(res=>res.json())
     .then((data)=>{
         if(data!=null){
-        fetch('http://localhost:6969/login',{
+        fetch('https://tnfeed.herokuapp.com/login',{
             method:'POST',
             body:JSON.stringify(userdata),
             headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -102,7 +102,7 @@ const homepage=(userdata)=>{
     const feed=document.querySelector('#posts');
      const submit=document.getElementById('submit');
         feed.innerHTML='<img src="img/Infinity-1s-200px.gif" alt="">';
-        fetch('http://localhost:6969/posts')
+        fetch('https://tnfeed.herokuapp.com/posts')
         .then(res=>res.json())
         .then((data)=>{
             let post='';
@@ -121,7 +121,7 @@ const homepage=(userdata)=>{
         date: `a day in life`
     }
     document.getElementById('content').value='';
-    fetch('http://localhost:6969/post',{
+    fetch('https://tnfeed.herokuapp.com/post',{
         method:'POST',
         body:JSON.stringify(data),
         headers: {"Content-type": "application/json; charset=UTF-8"}
