@@ -1,0 +1,205 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f7fbfe;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 10px solid transparent;
+  height: 100vh;
+}
+
+main nav {
+  padding: 30px;
+  height: 100%;
+  background-color: white;
+  width: 20%;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+main nav #logo {
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main nav #logo img {
+  height: 70px;
+  width: 150px;
+}
+
+main nav ul {
+  list-style: none;
+  margin: 20px 0;
+}
+
+main nav ul li i {
+  margin-right: 25px;
+  width: 10px;
+}
+
+main #feed {
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+  overflow: auto;
+}
+
+main #feed .create {
+  width: 100%;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: 1px solid rgba(49, 48, 48, 0.089);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main #feed .create textarea {
+  width: 80%;
+  height: 60%;
+  border: 2px solid #a975ff;
+  border-radius: 5px;
+  outline: none;
+  resize: none;
+}
+
+main #feed .create button {
+  background-color: #a975ff;
+  border: 2px solid #a975ff;
+  outline: none;
+  border-radius: 0 0 5px 5px;
+  color: white;
+  width: 70px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+main #feed .create button:hover {
+  background-color: white;
+  color: #a975ff;
+}
+
+main #feed #posts {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+main #feed #posts .post {
+  background-color: white;
+  overflow-y: auto;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+main #feed #posts img {
+  width: 100px;
+  height: 100px;
+  margin-left: 50%;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+main aside {
+  width: 30%;
+  height: 100%;
+}
+
+#container {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../img/layered-waves.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 -220px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#container #signup-card {
+  width: 400px;
+  height: 450px;
+  background-color: #76368f;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 10px;
+}
+
+#container #signup-card * {
+  margin: 20px;
+  width: 300px;
+  height: 40px;
+  outline: none;
+  border-radius: 5px;
+  border: 0;
+  padding: 5px;
+  color: #a975ff;
+}
+
+#container img {
+  width: 250px;
+  height: 100px;
+  margin-bottom: 30px;
+}
+/*# sourceMappingURL=styles.css.map */
