@@ -38,12 +38,12 @@ main {
   border: 10px solid transparent;
   height: 100vh;
   nav {
-    padding: 30px;
     height: 100%;
     background-color: white;
     width: 20%;
     position: sticky;
     #logo {
+      margin: 20px 0px;
       height: 100px;
       @include center();
       img {
@@ -51,13 +51,29 @@ main {
         width: 150px;
       }
     }
+    h4 {
+      margin-left: 25px;
+    }
     ul {
       list-style: none;
-      margin: 20px 0;
+      margin: 20px 25px;
       li {
+        display: block;
+        height: 40px;
+        color: #a5b5e2;
+        cursor: pointer;
+        @include center();
+        justify-content: flex-start;
         i {
           margin-right: 25px;
           width: 10px;
+        }
+        &:hover {
+          //background-color: rgba(102, 102, 102, 0.096);
+          color: black;
+          i {
+            color: $primary;
+          }
         }
       }
     }
@@ -76,6 +92,7 @@ main {
       color: $primary;
       li {
         text-align: center;
+        justify-content: center;
       }
       #logout {
         cursor: pointer;
@@ -83,7 +100,7 @@ main {
     }
     #username {
       float: left;
-      margin-right: 20px;
+      margin: 0 25px;
     }
   }
   #feed {
@@ -135,7 +152,9 @@ main {
           rgba(255, 255, 255, 1) 40%
         );
         overflow-y: auto;
-        border-radius: 15px;
+        border-radius: 10px;
+        border: 2px solid white;
+        box-shadow: 0px 19px 38px -8px rgba(0, 0, 0, 0.22);
         padding: 10px;
         height: 250px;
         .post-head {
@@ -154,8 +173,17 @@ main {
         }
         .post-body {
           padding: 5px 15px;
-          height: 70%;
+          height: 60%;
           margin: auto;
+        }
+        .post-foot {
+          height: 10%;
+          border-top: 1px solid rgba(49, 48, 48, 0.089);
+          padding-left: 15px;
+          color: $primary;
+          .like-button {
+            cursor: pointer;
+          }
         }
       }
       img {

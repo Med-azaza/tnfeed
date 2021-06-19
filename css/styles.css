@@ -50,7 +50,6 @@ main {
 }
 
 main nav {
-  padding: 30px;
   height: 100%;
   background-color: white;
   width: 20%;
@@ -59,6 +58,7 @@ main nav {
 }
 
 main nav #logo {
+  margin: 20px 0px;
   height: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -76,14 +76,45 @@ main nav #logo img {
   width: 150px;
 }
 
+main nav h4 {
+  margin-left: 25px;
+}
+
 main nav ul {
   list-style: none;
-  margin: 20px 0;
+  margin: 20px 25px;
+}
+
+main nav ul li {
+  display: block;
+  height: 40px;
+  color: #a5b5e2;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 main nav ul li i {
   margin-right: 25px;
   width: 10px;
+}
+
+main nav ul li:hover {
+  color: black;
+}
+
+main nav ul li:hover i {
+  color: #a975ff;
 }
 
 main nav #arrow {
@@ -106,6 +137,9 @@ main nav #dropMenu {
 
 main nav #dropMenu li {
   text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 main nav #dropMenu #logout {
@@ -114,7 +148,7 @@ main nav #dropMenu #logout {
 
 main nav #username {
   float: left;
-  margin-right: 20px;
+  margin: 0 25px;
 }
 
 main #feed {
@@ -185,7 +219,10 @@ main #feed #posts .post {
   background: -webkit-gradient(linear, left top, left bottom, from(#a975ff), color-stop(40%, white));
   background: linear-gradient(180deg, #a975ff 0%, white 40%);
   overflow-y: auto;
-  border-radius: 15px;
+  border-radius: 10px;
+  border: 2px solid white;
+  -webkit-box-shadow: 0px 19px 38px -8px rgba(0, 0, 0, 0.22);
+          box-shadow: 0px 19px 38px -8px rgba(0, 0, 0, 0.22);
   padding: 10px;
   height: 250px;
 }
@@ -209,8 +246,19 @@ main #feed #posts .post .post-head .date abbr {
 
 main #feed #posts .post .post-body {
   padding: 5px 15px;
-  height: 70%;
+  height: 60%;
   margin: auto;
+}
+
+main #feed #posts .post .post-foot {
+  height: 10%;
+  border-top: 1px solid rgba(49, 48, 48, 0.089);
+  padding-left: 15px;
+  color: #a975ff;
+}
+
+main #feed #posts .post .post-foot .like-button {
+  cursor: pointer;
 }
 
 main #feed #posts img {

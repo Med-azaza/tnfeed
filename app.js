@@ -97,10 +97,12 @@ const authin=()=>{
 //});
 }
 const homepage=(token)=>{
+    const openMenu=(e)=>{
+      document.getElementById('dropMenu').classList.toggle('opened');
+    }
     const refreshFeed=()=>{
-           document.getElementById('arrow').addEventListener('click',()=>{
-       document.getElementById('dropMenu').classList.toggle('opened');
-    });
+        document.getElementById('arrow').removeEventListener('click',openMenu);
+        document.getElementById('arrow').addEventListener('click',openMenu);
     document.getElementById('logout').addEventListener('click',()=>{
         localStorage.clear();
         location.reload();
@@ -145,9 +147,27 @@ const homepage=(token)=>{
                 def=parseInt(def/60/60/24);
                 date=(def===1)?`${def} day ago`:`${def} days ago`
             }
-        post+=`<div class='post'><div class='post-head'><h3>${el.owner}</h3><span class='date'><abbr title="${fullDate}">${date}</span></div><div class='post-body'>${el.content}</div></div>`;
+        post+=`<div class='post'>
+    <div class='post-head'>
+        <h3>${el.owner}</h3><span class='date'><abbr title="${fullDate}">${date}</span>
+    </div>
+    <div class='post-body'>${el.content}</div>
+    <div class="post-foot"><i class="far fa-heart like-button" data-like="false"></i></div>
+    </div>`;
         feed.innerHTML=post;
     })
+            let likeButtons=document.querySelectorAll('.like-button');
+        likeButtons.forEach((el)=>{
+            el.addEventListener('click',(e)=>{
+                if(e.target.getAttribute('data-like')==='false'){
+                e.target.setAttribute('class','fas fa-heart like-button');
+                e.target.setAttribute('data-like','true');
+            }else{
+                e.target.setAttribute('class','far fa-heart like-button');
+                e.target.setAttribute('data-like','false');
+            }
+            })
+        })
 });
     submit.addEventListener('click',()=>{
         let content=document.getElementById('content').value;
