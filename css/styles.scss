@@ -10,6 +10,26 @@ $primary: #a975ff;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $primary;
+  border-radius: 20px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #5513c0;
+}
+*.more-width::-webkit-scrollbar {
+  width: 10px;
+}
 body {
   background-color: #f7fbfe;
 }
@@ -40,6 +60,30 @@ main {
           width: 10px;
         }
       }
+    }
+    #arrow {
+      display: block;
+      cursor: pointer;
+    }
+    #dropMenu {
+      height: 0;
+      width: 110px;
+      float: right;
+      overflow: hidden;
+      border-radius: 7px;
+      box-shadow: 0 0 10px $primary;
+      transition: all 0.5s;
+      color: $primary;
+      li {
+        text-align: center;
+      }
+      #logout {
+        cursor: pointer;
+      }
+    }
+    #username {
+      float: left;
+      margin-right: 20px;
     }
   }
   #feed {
@@ -84,10 +128,35 @@ main {
       grid-template-columns: 1fr 1fr;
       grid-gap: 20px;
       .post {
-        background-color: white;
+        background: $primary;
+        background: linear-gradient(
+          180deg,
+          #a975ff 0%,
+          rgba(255, 255, 255, 1) 40%
+        );
         overflow-y: auto;
         border-radius: 15px;
         padding: 10px;
+        height: 250px;
+        .post-head {
+          padding: 5px 15px;
+          height: 30%;
+          color: white;
+          .date {
+            font-weight: 300;
+            font-size: 0.7em;
+            color: rgb(245, 239, 239);
+            abbr {
+              text-decoration: none;
+              cursor: default;
+            }
+          }
+        }
+        .post-body {
+          padding: 5px 15px;
+          height: 70%;
+          margin: auto;
+        }
       }
       img {
         width: 100px;
@@ -111,7 +180,7 @@ main {
   background-position: 0 -220px;
   @include center();
   flex-direction: column;
-  #signup-card {
+  #sign-card {
     width: 400px;
     height: 450px;
     background-color: rgb(118, 54, 143);
@@ -128,10 +197,21 @@ main {
       padding: 5px;
       color: $primary;
     }
+    img {
+      height: 100px;
+      width: 100px;
+    }
+    button {
+      cursor: pointer;
+    }
   }
   img {
     width: 250px;
     height: 100px;
     margin-bottom: 30px;
   }
+}
+.opened {
+  height: 100px !important ;
+  padding: 5px;
 }

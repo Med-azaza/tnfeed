@@ -6,6 +6,31 @@
   font-family: "Poppins", sans-serif;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #a975ff;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #5513c0;
+}
+
+*.more-width::-webkit-scrollbar {
+  width: 10px;
+}
+
 body {
   background-color: #f7fbfe;
 }
@@ -59,6 +84,37 @@ main nav ul {
 main nav ul li i {
   margin-right: 25px;
   width: 10px;
+}
+
+main nav #arrow {
+  display: block;
+  cursor: pointer;
+}
+
+main nav #dropMenu {
+  height: 0;
+  width: 110px;
+  float: right;
+  overflow: hidden;
+  border-radius: 7px;
+  -webkit-box-shadow: 0 0 10px #a975ff;
+          box-shadow: 0 0 10px #a975ff;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  color: #a975ff;
+}
+
+main nav #dropMenu li {
+  text-align: center;
+}
+
+main nav #dropMenu #logout {
+  cursor: pointer;
+}
+
+main nav #username {
+  float: left;
+  margin-right: 20px;
 }
 
 main #feed {
@@ -125,10 +181,36 @@ main #feed #posts {
 }
 
 main #feed #posts .post {
-  background-color: white;
+  background: #a975ff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#a975ff), color-stop(40%, white));
+  background: linear-gradient(180deg, #a975ff 0%, white 40%);
   overflow-y: auto;
   border-radius: 15px;
   padding: 10px;
+  height: 250px;
+}
+
+main #feed #posts .post .post-head {
+  padding: 5px 15px;
+  height: 30%;
+  color: white;
+}
+
+main #feed #posts .post .post-head .date {
+  font-weight: 300;
+  font-size: 0.7em;
+  color: #f5efef;
+}
+
+main #feed #posts .post .post-head .date abbr {
+  text-decoration: none;
+  cursor: default;
+}
+
+main #feed #posts .post .post-body {
+  padding: 5px 15px;
+  height: 70%;
+  margin: auto;
 }
 
 main #feed #posts img {
@@ -166,7 +248,7 @@ main aside {
           flex-direction: column;
 }
 
-#container #signup-card {
+#container #sign-card {
   width: 400px;
   height: 450px;
   background-color: #76368f;
@@ -186,7 +268,7 @@ main aside {
   border-radius: 10px;
 }
 
-#container #signup-card * {
+#container #sign-card * {
   margin: 20px;
   width: 300px;
   height: 40px;
@@ -197,9 +279,23 @@ main aside {
   color: #a975ff;
 }
 
+#container #sign-card img {
+  height: 100px;
+  width: 100px;
+}
+
+#container #sign-card button {
+  cursor: pointer;
+}
+
 #container img {
   width: 250px;
   height: 100px;
   margin-bottom: 30px;
+}
+
+.opened {
+  height: 100px !important;
+  padding: 5px;
 }
 /*# sourceMappingURL=styles.css.map */

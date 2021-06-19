@@ -67,10 +67,13 @@ const authin=()=>{
         email:email,
         password:pass
     }
-    fetch(`https://tnfeed.herokuapp.com/user/${email}`)
+    /*fetch(`https://tnfeed.herokuapp.com/user`,{
+            headers: {"authorization":`bearer ${JSON.parse(localStorage.getItem('token')).token}`}
+        })
     .then(res=>res.json())
     .then((data)=>{
-        if(data!=null){
+        if(data!=null){*/
+            document.getElementById('sign-card').innerHTML='<img src="img/Infinity-1s-200px.gif" alt="">';
         fetch('https://tnfeed.herokuapp.com/login',{
             method:'POST',
             body:JSON.stringify(userdata),
@@ -79,34 +82,70 @@ const authin=()=>{
         .then(res=>res.json())
         .then((data)=>{
             if (data!=null){
-            homepage(data);
-            localStorage.setItem('data',JSON.stringify(data));
+            homepage(data.token);
+            localStorage.setItem('token',JSON.stringify(data));
         }else{
                 alert('wrong pass');
             }
         })
-        }else{
-            alert('email not registred');
-        }
+        //}else{
+            //alert('email not registred');
+        //}
         
     });
 
-});
+//});
 }
-const homepage=(userdata)=>{
+const homepage=(token)=>{
     const refreshFeed=()=>{
+           document.getElementById('arrow').addEventListener('click',()=>{
+       document.getElementById('dropMenu').classList.toggle('opened');
+    });
+    document.getElementById('logout').addEventListener('click',()=>{
+        localStorage.clear();
+        location.reload();
+    });
+        let userdata={};
         const username=document.getElementById('username');
-        username.innerHTML=userdata.name
     const feed=document.querySelector('#posts');
      const submit=document.getElementById('submit');
         feed.innerHTML='<img src="img/Infinity-1s-200px.gif" alt="">';
-        fetch('https://tnfeed.herokuapp.com/posts')
+        fetch('https://tnfeed.herokuapp.com/user',{
+            headers: {"authorization":`bearer ${token}`}
+        }).then(res=>res.json())
+        .then((data)=>{
+            userdata=data;
+            username.innerHTML=userdata.name;
+        });
+        
+
+        fetch('https://tnfeed.herokuapp.com/posts',{
+            headers: {"authorization":`bearer ${token}`}
+        })
         .then(res=>res.json())
         .then((data)=>{
             let post='';
             if (data.length<1) {feed.innerHTML='no posts';}
         data.forEach((el)=>{
-        post+=`<div class='post'><h5>${el.owner}</h5>${el.content}</div>`;
+            let def=Date.now()-parseInt(el.date);
+            let fullDate=new Date(parseInt(el.date));
+            def=parseInt(def/1000);
+            let date='';
+            if(def<10){
+                date='now';
+            }else if (def<60){
+                date=(def===1)?`${def} seconde ago`:`${def} seconds ago`
+            }else if(def<3600){
+                def=parseInt(def/60);
+                date=(def===1)?`${def} minute ago`:`${def} minutes ago`
+            }else if (def<86400){
+                def=parseInt((def/60)/60);
+                date=(def===1)?`${def} hour ago`:`${def} hours ago`
+            }else{
+                def=parseInt(def/60/60/24);
+                date=(def===1)?`${def} day ago`:`${def} days ago`
+            }
+        post+=`<div class='post'><div class='post-head'><h3>${el.owner}</h3><span class='date'><abbr title="${fullDate}">${date}</span></div><div class='post-body'>${el.content}</div></div>`;
         feed.innerHTML=post;
     })
 });
@@ -134,10 +173,10 @@ const homepage=(userdata)=>{
 refreshFeed();
 })
     .catch(err=>console.log(err));
-
-
-
 }
+if (localStorage.getItem('token')!==null){
+    homepage(JSON.parse(localStorage.getItem('token')).token);
+}else{
 let signup=document.getElementById('signup');
 let login=document.getElementById('login');
 
@@ -158,4 +197,4 @@ login.addEventListener('click',()=>{
         authin();
 })
     .catch(err=>console.log(err));
-});
+});}
