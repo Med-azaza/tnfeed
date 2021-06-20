@@ -147,19 +147,29 @@ const homepage=(token)=>{
                 def=parseInt(def/60/60/24);
                 date=(def===1)?`${def} day ago`:`${def} days ago`
             }
-        post+=`<div class='post'>
+        post+=`<div class='post' data-id="${el._id}">
     <div class='post-head'>
         <h3>${el.owner}</h3><span class='date'><abbr title="${fullDate}">${date}</span>
     </div>
     <div class='post-body'>${el.content}</div>
-    <div class="post-foot"><i class="far fa-heart like-button" data-like="false"></i></div>
+    <div class="post-foot"><i class="far fa-heart like-button" data-like="false"></i><span>${el.likes}</span></div>
     </div>`;
         feed.innerHTML=post;
     })
             let likeButtons=document.querySelectorAll('.like-button');
         likeButtons.forEach((el)=>{
             el.addEventListener('click',(e)=>{
+                e.target.setAttribute('class','');
                 if(e.target.getAttribute('data-like')==='false'){
+                    let data={
+                        id:e.target.parentElement.parentElement.getAttribute('data-id'),
+                        likes:parseInt(e.target.nextSibling.textContent)+1
+                    }
+                fetch('https://tnfeed.herokuapp.com/update_post',{
+        method:'POST',
+        body:JSON.stringify(data),
+        headers: {"Content-type": "application/json; charset=UTF-8","authorization":`bearer ${token}`}
+    })
                 e.target.setAttribute('class','fas fa-heart like-button');
                 e.target.setAttribute('data-like','true');
             }else{
@@ -175,13 +185,14 @@ const homepage=(token)=>{
     let data={
         owner:userdata.name,
         content: `${content}`,
+        likes:0,
         date: Date.now()
     }
     document.getElementById('content').value='';
     fetch('https://tnfeed.herokuapp.com/post',{
         method:'POST',
         body:JSON.stringify(data),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
+        headers: {"Content-type": "application/json; charset=UTF-8","authorization":`bearer ${token}`}
     })
     .then(response =>{refreshFeed();});
 }});
