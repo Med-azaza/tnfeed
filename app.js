@@ -147,37 +147,58 @@ const homepage=(token)=>{
                 def=parseInt(def/60/60/24);
                 date=(def===1)?`${def} day ago`:`${def} days ago`
             }
+            let liked=false;
+            for(let i in el.likers){
+                if(el.likers[i]===userdata._id){
+                    liked=true;
+                }
+            }
+            let likeString=liked?'fas fa-heart':'far fa-heart';
         post+=`<div class='post' data-id="${el._id}">
     <div class='post-head'>
         <h3>${el.owner}</h3><span class='date'><abbr title="${fullDate}">${date}</span>
     </div>
     <div class='post-body'>${el.content}</div>
-    <div class="post-foot"><i class="far fa-heart like-button" data-like="false"></i><span>${el.likes}</span></div>
+    <div class="post-foot"><i class="${likeString} like-button" data-like="${liked}"></i><span>${el.likers.length}</span></div>
     </div>`;
         feed.innerHTML=post;
     })
             let likeButtons=document.querySelectorAll('.like-button');
         likeButtons.forEach((el)=>{
             el.addEventListener('click',(e)=>{
-                e.target.setAttribute('class','');
+                e.target.setAttribute('class','like-button');
+                e.target.innerHTML='<img src="img/Growing ring.gif" alt="">';
                 if(e.target.getAttribute('data-like')==='false'){
                     let data={
                         id:e.target.parentElement.parentElement.getAttribute('data-id'),
-                        likes:parseInt(e.target.nextSibling.textContent)+1
                     }
-                fetch('https://tnfeed.herokuapp.com/update_post',{
+                fetch('https://tnfeed.herokuapp.com/update_post/like',{
         method:'POST',
         body:JSON.stringify(data),
         headers: {"Content-type": "application/json; charset=UTF-8","authorization":`bearer ${token}`}
+    }).then((res)=>{
+        e.target.setAttribute('class','fas fa-heart like-button');
+        e.target.setAttribute('data-like','true');
+        e.target.nextSibling.innerHTML=parseInt(e.target.nextSibling.textContent)+1;
+        e.target.innerHTML='';
     })
-                e.target.setAttribute('class','fas fa-heart like-button');
-                e.target.setAttribute('data-like','true');
-            }else{
-                e.target.setAttribute('class','far fa-heart like-button');
+        }else{
+                let data={
+                    id:e.target.parentElement.parentElement.getAttribute('data-id'),
+                }
+                fetch('https://tnfeed.herokuapp.com/update_post/unlike',{
+        method:'POST',
+        body:JSON.stringify(data),
+        headers: {"Content-type": "application/json; charset=UTF-8","authorization":`bearer ${token}`}
+    }).then((res)=>{
+                        e.target.setAttribute('class','far fa-heart like-button');
                 e.target.setAttribute('data-like','false');
+                e.target.nextSibling.innerHTML=parseInt(e.target.nextSibling.textContent)-1;
+                e.target.innerHTML='';
+    })
             }
             })
-        })
+       })
 });
     submit.addEventListener('click',()=>{
         let content=document.getElementById('content').value;
