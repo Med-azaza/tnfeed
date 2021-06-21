@@ -108,6 +108,26 @@ main {
     height: 100%;
     padding: 20px;
     overflow: auto;
+    #commentsModal {
+      position: absolute;
+      height: 400px;
+      width: 350px;
+      opacity: 0;
+      z-index: -1;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s;
+      padding: 10px;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 24px 24px 48px #b1b1b1, -24px -24px 48px #ffffff;
+      .closeModal {
+        float: right;
+        color: gray;
+        cursor: pointer;
+      }
+    }
     .create {
       width: 100%;
       height: 100px;
@@ -144,6 +164,7 @@ main {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-gap: 20px;
+      position: relative;
       .post {
         background: $primary;
         background: linear-gradient(
@@ -182,9 +203,10 @@ main {
           border-top: 1px solid rgba(49, 48, 48, 0.089);
           padding-left: 15px;
           color: $primary;
-          .like-button {
+          .like-button,
+          .comment-button {
             cursor: pointer;
-            width: 50px;
+            width: 30px;
             position: relative;
             img {
               height: 20px;
@@ -193,7 +215,6 @@ main {
             }
           }
           span {
-            position: absolute;
             left: 20%;
           }
         }
@@ -254,4 +275,61 @@ main {
 .opened {
   height: 100px !important ;
   padding: 5px;
+}
+i {
+  font-size: 20px;
+  margin-left: 10px;
+}
+.modalAppear {
+  //display: block !important;
+  opacity: 1 !important;
+  z-index: 99 !important;
+}
+#landing-page {
+  flex-direction: column;
+  border: 0;
+  background-color: $primary;
+  header {
+    height: 50%;
+    width: 100%;
+    @include center();
+    flex-direction: column;
+    color: white;
+    font-size: 2.5em;
+    font-weight: 600;
+  }
+  .btns {
+    background-color: white;
+    border-radius: 0 70px 0 0;
+    @include center();
+    height: 50%;
+    width: 100%;
+    button {
+      margin: 0 50px;
+      width: 200px;
+      height: 60px;
+      font-size: 2em;
+      font-weight: 500;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.5s;
+      &:hover {
+        transform: scale(1.1, 1.1);
+      }
+    }
+    button:nth-child(1) {
+      border: 3px solid $primary;
+      background-color: transparent;
+      color: $primary;
+      &:hover {
+        color: white;
+        background-color: $primary;
+      }
+    }
+    button:nth-child(2) {
+      border: 0;
+      background-color: $primary;
+      color: white;
+    }
+  }
 }

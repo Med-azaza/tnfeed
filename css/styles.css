@@ -158,6 +158,31 @@ main #feed {
   overflow: auto;
 }
 
+main #feed #commentsModal {
+  position: absolute;
+  height: 400px;
+  width: 350px;
+  opacity: 0;
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  padding: 10px;
+  border-radius: 10px;
+  background: white;
+  -webkit-box-shadow: 24px 24px 48px #b1b1b1, -24px -24px 48px #ffffff;
+          box-shadow: 24px 24px 48px #b1b1b1, -24px -24px 48px #ffffff;
+}
+
+main #feed #commentsModal .closeModal {
+  float: right;
+  color: gray;
+  cursor: pointer;
+}
+
 main #feed .create {
   width: 100%;
   height: 100px;
@@ -212,6 +237,7 @@ main #feed #posts {
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
+  position: relative;
 }
 
 main #feed #posts .post {
@@ -258,20 +284,21 @@ main #feed #posts .post .post-foot {
   color: #a975ff;
 }
 
-main #feed #posts .post .post-foot .like-button {
+main #feed #posts .post .post-foot .like-button,
+main #feed #posts .post .post-foot .comment-button {
   cursor: pointer;
-  width: 50px;
+  width: 30px;
   position: relative;
 }
 
-main #feed #posts .post .post-foot .like-button img {
+main #feed #posts .post .post-foot .like-button img,
+main #feed #posts .post .post-foot .comment-button img {
   height: 20px;
   width: 20px;
   position: absolute;
 }
 
 main #feed #posts .post .post-foot span {
-  position: absolute;
   left: 20%;
 }
 
@@ -359,5 +386,95 @@ main aside {
 .opened {
   height: 100px !important;
   padding: 5px;
+}
+
+i {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.modalAppear {
+  opacity: 1 !important;
+  z-index: 99 !important;
+}
+
+#landing-page {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: 0;
+  background-color: #a975ff;
+}
+
+#landing-page header {
+  height: 50%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: white;
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+#landing-page .btns {
+  background-color: white;
+  border-radius: 0 70px 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 50%;
+  width: 100%;
+}
+
+#landing-page .btns button {
+  margin: 0 50px;
+  width: 200px;
+  height: 60px;
+  font-size: 2em;
+  font-weight: 500;
+  border-radius: 40px;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#landing-page .btns button:hover {
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
+}
+
+#landing-page .btns button:nth-child(1) {
+  border: 3px solid #a975ff;
+  background-color: transparent;
+  color: #a975ff;
+}
+
+#landing-page .btns button:nth-child(1):hover {
+  color: white;
+  background-color: #a975ff;
+}
+
+#landing-page .btns button:nth-child(2) {
+  border: 0;
+  background-color: #a975ff;
+  color: white;
 }
 /*# sourceMappingURL=styles.css.map */
