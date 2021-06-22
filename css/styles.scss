@@ -122,10 +122,61 @@ main {
       border-radius: 10px;
       background: white;
       box-shadow: 24px 24px 48px #b1b1b1, -24px -24px 48px #ffffff;
+      @include center();
+      flex-direction: column;
       .closeModal {
-        float: right;
         color: gray;
         cursor: pointer;
+      }
+      .comments {
+        height: 80%;
+        width: 100%;
+        overflow: auto;
+        padding: 5px;
+        @include center();
+        flex-direction: column;
+        justify-content: flex-start;
+        .comment {
+          background-color: rgb(224, 219, 219);
+          border-radius: 10px;
+          width: 100%;
+          margin: 15px 0;
+          padding: 5px;
+          div:nth-child(1) {
+            font-weight: 600;
+            font-size: 1.1em;
+          }
+          div:nth-child(2) {
+            font-weight: 300;
+            font-size: 0.9em;
+          }
+        }
+      }
+      .createComment {
+        height: 20%;
+        width: 100%;
+        @include center();
+        textarea {
+          resize: none;
+          width: 200px;
+          height: 45px;
+          margin-right: 10px;
+          border-radius: 5px;
+          border: 0;
+          outline: none;
+          &:focus {
+            box-shadow: 0 0 0 2pt #aa75ffa6;
+          }
+        }
+        button {
+          height: 45px;
+          border-radius: 5px;
+          border: 0;
+          cursor: pointer;
+          background-color: $primary;
+          color: white;
+          padding: 0 2px;
+        }
       }
     }
     .create {

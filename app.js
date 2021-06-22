@@ -202,7 +202,8 @@ const homepage=(token)=>{
                 document.getElementById('commentsModal').setAttribute('class','');
             })
             const refreshComments = (data) => {
-                                    fetch('http://tnfeed.herokuapp.com/post/get_comments', {
+                document.querySelector('.comments').innerHTML = '<img src="img/Growing ring.gif" alt="">';
+                        fetch('http://tnfeed.herokuapp.com/post/get_comments', {
                         method: 'POST',
                         body: JSON.stringify(data),
                         headers: { "Content-type": "application/json; charset=UTF-8", "authorization": `bearer ${token}` }
@@ -231,7 +232,8 @@ const homepage=(token)=>{
                 });
             });
             document.getElementById('submitComment').addEventListener('click', (e) => {
-                let comment = document.getElementById('commentText').value;
+                if (document.getElementById('commentText').value !== '') {
+                    let comment = document.getElementById('commentText').value;
                 document.getElementById('commentText').value = '';
                 let data = {
                     id: e.target.parentElement.parentElement.getAttribute('data-id'),
@@ -249,6 +251,7 @@ const homepage=(token)=>{
                         refreshComments(data);
                 })
 
+                }
             })
         })})
         submit.addEventListener('click',()=>{
