@@ -203,7 +203,7 @@ const homepage=(token)=>{
             })
             const refreshComments = (data) => {
                 document.querySelector('.comments').innerHTML = '<img src="img/Growing ring.gif" alt="">';
-                        fetch('http://tnfeed.herokuapp.com/post/get_comments', {
+                        fetch('https://tnfeed.herokuapp.com/post/get_comments', {
                         method: 'POST',
                         body: JSON.stringify(data),
                         headers: { "Content-type": "application/json; charset=UTF-8", "authorization": `bearer ${token}` }
